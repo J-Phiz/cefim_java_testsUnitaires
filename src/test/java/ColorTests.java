@@ -14,6 +14,7 @@ public class ColorTests {
 
     @BeforeEach
     void setUpTests() {
+        color = new Color(0, 12, 43);
     }
 
     @Test
@@ -108,6 +109,135 @@ public class ColorTests {
         });
     }
 
+    @Test
+    void getRedTestCase() {
+        color = new Color(0x23, 0x45, 0x67);
+        assertEquals(0x23, color.getRed());
+        assertEquals(0x45, color.getGreen());
+        assertEquals(0x67, color.getBlue());
+        assertEquals("#234567", color.getRgbCode());
+    }
+    @Test
+    void getGreenTestCase() {
+        color = new Color(0x23, 0x45, 0x67);
+        assertEquals(0x23, color.getRed());
+        assertEquals(0x45, color.getGreen());
+        assertEquals(0x67, color.getBlue());
+        assertEquals("#234567", color.getRgbCode());
+    }
+    @Test
+    void getBlueTestCase() {
+        color = new Color(0x23, 0x45, 0x67);
+        assertEquals(0x23, color.getRed());
+        assertEquals(0x45, color.getGreen());
+        assertEquals(0x67, color.getBlue());
+        assertEquals("#234567", color.getRgbCode());
+    }
+
+    @Test
+    void setRedOKTestCase() {
+        color = new Color(0x23, 0x45, 0x67);
+        color.setRed(255);
+        assertEquals(255, color.getRed());
+        assertEquals(0x45, color.getGreen());
+        assertEquals(0x67, color.getBlue());
+        assertEquals("#FF4567", color.getRgbCode());
+    }
+    @Test
+    void setGreenOKTestCase() {
+        color = new Color(0x23, 0x45, 0x67);
+        color.setGreen(255);
+        assertEquals(0x23, color.getRed());
+        assertEquals(255, color.getGreen());
+        assertEquals(0x67, color.getBlue());
+        assertEquals("#23FF67", color.getRgbCode());
+    }
+    @Test
+    void setBlueOKTestCase() {
+        color = new Color(0x23, 0x45, 0x67);
+        color.setBlue(255);
+        assertEquals(0x23, color.getRed());
+        assertEquals(0x45, color.getGreen());
+        assertEquals(255, color.getBlue());
+        assertEquals("#2345FF", color.getRgbCode());
+    }
+    @Test
+    void setCodeOKTestCase() {
+        color = new Color("#234567");
+        color.setRgbCode("#765432");
+        assertEquals(0x76, color.getRed());
+        assertEquals(0x54, color.getGreen());
+        assertEquals(0x32, color.getBlue());
+        assertEquals("#765432", color.getRgbCode());
+    }
+
+    @Test
+    void setRedTooBigTestCase() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            color.setRed(257);
+        });
+    }
+    @Test
+    void setGreenTooBigTestCase() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            color.setGreen(0x0FFE);
+        });
+    }
+    @Test
+    void setBlueTooBigTestCase() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            color.setBlue(0x100);
+        });
+    }
+    @Test
+    void stRedTooSmallTestCase() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            color.setRed(-3);
+        });
+    }
+    @Test
+    void setGreenTooSmallTestCase() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            color.setGreen(-23);
+        });
+    }
+    @Test
+    void setBlueTooSmallTestCase() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            color.setBlue(0xFFFFFFFE);
+        });
+    }
+
+    @Test
+    void setCodeWrongStringTestCase() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            color.setRgbCode("RougeLeger;VertMoyen;BlueSombre");
+        });
+    }
+    @Test
+    void setCodeWrongHeaderTestCase() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            color.setRgbCode("%d345F8");
+        });
+    }
+    @Test
+    void setCodeWrongSizeTooBigTestCase() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            color.setRgbCode("#d345f34");
+        });
+    }
+    @Test
+    void setCodeWrongSizeTooSmallTestCase() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            color.setRgbCode("#d345f");
+        });
+    }
+    @Test
+    void setCodeWrongHexaTestCase() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            color.setRgbCode("#d3y5fG");
+        });
+    }
     @AfterEach
     void tearDownTests() {
         color = null;
