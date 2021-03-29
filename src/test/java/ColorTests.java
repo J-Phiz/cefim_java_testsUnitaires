@@ -79,7 +79,19 @@ public class ColorTests {
     }
 
     @Test
-    void hexaColorsConstructorWrongStringTestCase() {
+    void hexaColorsConstructorWrongString1TestCase() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            color = new Color(null);
+        });
+    }
+    @Test
+    void hexaColorsConstructorWrongString2TestCase() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            color = new Color("");
+        });
+    }
+    @Test
+    void hexaColorsConstructorWrongString3TestCase() {
         assertThrows(IllegalArgumentException.class, () -> {
             color = new Color("RougeLeger;VertMoyen;BlueSombre");
         });
@@ -209,7 +221,19 @@ public class ColorTests {
     }
 
     @Test
-    void setCodeWrongStringTestCase() {
+    void setCodeWrongString1TestCase() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            color.setRgbCode(null);
+        });
+    }
+    @Test
+    void setCodeWrongString2TestCase() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            color.setRgbCode("");
+        });
+    }
+    @Test
+    void setCodeWrongString3TestCase() {
         assertThrows(IllegalArgumentException.class, () -> {
             color.setRgbCode("RougeLeger;VertMoyen;BlueSombre");
         });
