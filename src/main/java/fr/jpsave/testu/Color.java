@@ -79,6 +79,6 @@ public class Color {
     @Override
     public String toString() {
         return "[value=" + code + ", r=" + red +
-        ", g=" +green + ", b=" + blue + "]";
+        ", g=" + green + ", b=" + blue + "]";
     }
 }

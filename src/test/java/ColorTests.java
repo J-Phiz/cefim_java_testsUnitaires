@@ -17,6 +17,12 @@ public class ColorTests {
     }
 
     @Test
+    void toStringTestCase() {
+        color = new Color(13, 141, 253);
+        assertEquals("[value=#0D8DFD, r=13, g=141, b=253]", color.toString());
+    }
+
+    @Test
     void separateColorsConstructorOKTestCase() {
         color = new Color(233, 11, 99);
         assertEquals(233, color.getRed());
