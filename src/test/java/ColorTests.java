@@ -14,7 +14,6 @@ public class ColorTests {
 
     @BeforeEach
     void setUpTests() {
-        color = new Color(213, 141, 53);
     }
 
     @Test
@@ -36,41 +35,68 @@ public class ColorTests {
     }
 
     @Test
-    void separateColorsConstructorKOTestCase() {
+    void separateColorsConstructorRedTooBigTestCase() {
         assertThrows(IllegalArgumentException.class, () -> {
             color = new Color(257, 12, 43);
         });
+    }
+    @Test
+    void separateColorsConstructorGreenTooBigTestCase() {
         assertThrows(IllegalArgumentException.class, () -> {
             color = new Color(253, 0x0FFE, 43);
         });
+    }
+    @Test
+    void separateColorsConstructorBlueTooBigTestCase() {
         assertThrows(IllegalArgumentException.class, () -> {
             color = new Color(251, 12, 0x100);
         });
+    }
+    @Test
+    void separateColorsConstructorRedTooSmallTestCase() {
         assertThrows(IllegalArgumentException.class, () -> {
             color = new Color(-3, 12, 43);
         });
+    }
+    @Test
+    void separateColorsConstructorGreenTooSmallTestCase() {
         assertThrows(IllegalArgumentException.class, () -> {
             color = new Color(253, -23, 43);
         });
+    }
+    @Test
+    void separateColorsConstructorBlueTooSmallTestCase() {
         assertThrows(IllegalArgumentException.class, () -> {
             color = new Color(25, 12, 0xFFFFFFFE);
         });
     }
 
     @Test
-    void hexaColorsConstructorKOTestCase() {
+    void hexaColorsConstructorWrongStringTestCase() {
         assertThrows(IllegalArgumentException.class, () -> {
             color = new Color("RougeLeger;VertMoyen;BlueSombre");
         });
+    }
+    @Test
+    void hexaColorsConstructorWrongHeaderTestCase() {
         assertThrows(IllegalArgumentException.class, () -> {
             color = new Color("%d345F8");
         });
+    }
+    @Test
+    void hexaColorsConstructorWrongSizeTooBigTestCase() {
         assertThrows(IllegalArgumentException.class, () -> {
             color = new Color("#d345f34");
         });
+    }
+    @Test
+    void hexaColorsConstructorWrongSizeTooSmallTestCase() {
         assertThrows(IllegalArgumentException.class, () -> {
             color = new Color("#d345f");
         });
+    }
+    @Test
+    void hexaColorsConstructorWrongHexaTestCase() {
         assertThrows(IllegalArgumentException.class, () -> {
             color = new Color("#d3y5fG");
         });
